@@ -1,0 +1,55 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: vpn-tor-alpine
+    container_name: json-api-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    tty: true
+    ports:
+      - "8000:8080"
+    depends_on:
+      - redis-cache
+      - mysql
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - json-api
+
+  mysql:
+    container_name: json-api-db
+    image: mysql:8.0
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: json-api-db
+      MYSQL_USER: morteza
+      MYSQL_PASSWORD: 123456
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker/mysqlconf:/etc/mysql/conf.d
+    networks:
+      - json-api
+
+  redis-cache:
+    image: redis:alpine
+    container_name: json-api-cache
+    hostname: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - json-api
+
+networks:
+  json-api:
+    driver: bridge
+
+volumes:
+  db_data:
