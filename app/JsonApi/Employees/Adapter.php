@@ -16,6 +16,11 @@ class Adapter extends AbstractAdapter
     protected $guarded = ['hiredAt'];
 
     protected $dates = ['birthDate','hiredAt'];
+
+    protected $sortColumns = [
+        'name' => 'first_name',
+    ];
+
     /**
      * Mapping of JSON API attribute field names to model keys.
      *
@@ -85,5 +90,11 @@ class Adapter extends AbstractAdapter
     public function salaries(): \CloudCreativity\LaravelJsonApi\Eloquent\HasMany
     {
         return $this->hasMany();
+    }
+
+    protected function sortByTotalSalary($query, $direction): void
+    {
+        $query->withSum('salaries','salary')
+            ->orderBy('salaries_sum_salary', $direction);
     }
 }

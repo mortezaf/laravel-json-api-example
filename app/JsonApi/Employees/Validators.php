@@ -15,7 +15,7 @@ class Validators extends AbstractValidators
      * @var string[]|null
      *      the allowed paths, an empty array for none allowed, or null to allow all paths.
      */
-    protected $allowedIncludePaths = ['departments','salary','title','managers'];
+    protected $allowedIncludePaths = ['departments','salary','title','managers','departments.managers'];
 
     /**
      * The sort field names a client is allowed send.
@@ -23,7 +23,14 @@ class Validators extends AbstractValidators
      * @var string[]|null
      *      the allowed fields, an empty array for none allowed, or null to allow all fields.
      */
-    protected $allowedSortParameters = [];
+    protected $allowedSortParameters = [
+        'name',
+        'family',
+        'sex',
+        'birthDate',
+        'hiredAt',
+        'totalSalary'
+    ];
 
     /**
      * The filters a client is allowed send.
