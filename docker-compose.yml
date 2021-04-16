@@ -4,7 +4,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: vpn-tor-alpine
+    image: json-api-alpine
     container_name: json-api-app
     restart: unless-stopped
     working_dir: /var/www/html
