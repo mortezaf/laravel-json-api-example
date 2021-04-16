@@ -5,6 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed first_name
+ * @property mixed last_name
+ * @property mixed gender
+ * @property mixed birth_date
+ * @property mixed hire_date
+ * @property mixed created_at
+ * @property mixed updated_at
+ */
 class Employee extends Model
 {
     use HasFactory;

@@ -66,7 +66,10 @@ return [
     | `'posts' => App\Post::class`
     */
     'resources' => [
-
+        'employees' => \App\Models\Employee::class,
+        'departments' => \App\Models\Department::class,
+        'salaries' => \App\Models\Salary::class,
+        'titles' => \App\Models\Title::class,
     ],
 
     /*
