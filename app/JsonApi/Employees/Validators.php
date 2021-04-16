@@ -15,7 +15,7 @@ class Validators extends AbstractValidators
      * @var string[]|null
      *      the allowed paths, an empty array for none allowed, or null to allow all paths.
      */
-    protected $allowedIncludePaths = [];
+    protected $allowedIncludePaths = ['departments','salary','title','managers'];
 
     /**
      * The sort field names a client is allowed send.

@@ -44,14 +44,26 @@ class Schema extends SchemaProvider
             'departments' => [
                 self::SHOW_SELF => true,
                 self::SHOW_RELATED => true,
+                self::SHOW_DATA => isset($includeRelationships['departments']),
+                self::DATA => function () use ($resource) {
+                    return $resource->departments;
+                }
             ],
             'managers' => [
                 self::SHOW_SELF => true,
                 self::SHOW_RELATED => true,
+                self::SHOW_DATA => isset($includeRelationships['manager']),
+                self::DATA => function () use ($resource) {
+                    return $resource->managers;
+                }
             ],
             'title' => [
                 self::SHOW_SELF => true,
                 self::SHOW_RELATED => true,
+                self::SHOW_DATA => isset($includeRelationships['title']),
+                self::DATA => function () use ($resource) {
+                    return $resource->title;
+                }
             ],
             'titles' => [
                 self::SHOW_SELF => true,
@@ -60,7 +72,11 @@ class Schema extends SchemaProvider
             'salary' => [
                 self::SHOW_SELF => true,
                 self::SHOW_RELATED => true,
-            ],
+                self::SHOW_DATA => isset($includeRelationships['salary']),
+                self::DATA => function () use ($resource) {
+                    return $resource->salary;
+                }
+                ],
             'salaries' => [
                 self::SHOW_SELF => true,
                 self::SHOW_RELATED => true,

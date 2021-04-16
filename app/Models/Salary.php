@@ -30,4 +30,9 @@ class Salary extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'employee_id';
+    }
 }
