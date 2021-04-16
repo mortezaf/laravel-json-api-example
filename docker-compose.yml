@@ -38,9 +38,9 @@ services:
     networks:
       - json-api
 
-  redis-cache:
+  redis:
     image: redis:alpine
-    container_name: json-api-cache
+    container_name: json-api-redis
     hostname: redis
     ports:
       - "6379:6379"
